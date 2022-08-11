@@ -1,0 +1,1 @@
+~/upscaler-api/node_modules/node/bin/node ~/upscaler-api/node_modules/npm/bin/npm-cli.js $@
