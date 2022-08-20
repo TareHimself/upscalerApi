@@ -10,9 +10,9 @@ app.get('/', async (req, res) => {
   res.send("HI");
 });
 
-app.get('/upscale/*', async (req, res) => {
+app.get(/(https:|http:)(\/\/|\/)(.*)/, async (req, res) => {
   try {
-    const url = req.params[0].trim();
+    const url = req.params[0] + '//' + req.params[2];
     //const result = await probe(req.params[0]);
     const image = await getImage(url);
     res.contentType('image/png');
@@ -24,6 +24,6 @@ app.get('/upscale/*', async (req, res) => {
 
 });
 
-app.listen(3006, async () => {
-  console.log(`http://localhost:${3006}/`);
+app.listen(process.argv.includes('debug') ? 3006 : 8080, async () => {
+  console.log(`http://localhost:${process.argv.includes('debug') ? 3006 : 8080}/`);
 });
